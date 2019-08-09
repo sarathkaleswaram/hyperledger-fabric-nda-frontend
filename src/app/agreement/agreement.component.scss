@@ -1,0 +1,29 @@
+input{
+    border: 0;
+    border-bottom: 1px solid #000;
+    padding-left: 2em;
+}
+input:active{
+    outline: none !important;
+}
+input:focus{
+    outline-width: none !important;
+}
+h2{
+    margin-top: 2em;
+    text-align: center;
+}
+
+.agreement{
+    margin-bottom: 5em;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.signature{
+    position: relative;
+    float: right;
+}
