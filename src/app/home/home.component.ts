@@ -1,21 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../services/user.service';
+import { APIService } from '../services/api.service';
 import { Router } from '@angular/router';
-import User from '../user';
-
-export interface Users {
-  date: number;
-  month: string;
-  company_desc: string;
-  location: string;
-  location_receive: string;
-  company_receive: string;
-  transaction: string;
-  state_accord: string;
-  state_executed: string;
-}
-
-const ELEMENT_DATA: Users[] = [];
 
 @Component({
   selector: 'app-home',
@@ -24,17 +9,17 @@ const ELEMENT_DATA: Users[] = [];
 })
 export class HomeComponent implements OnInit {
 
-  users: User[];
-  constructor(private us: UserService, private router: Router) { }
+  constructor(private apiService: APIService, private router: Router) { }
 
   ngOnInit() {
-
-    this.us.getUser().subscribe((data: User[]) => {
-      this.users = data;
-  });
   }
 
-  displayedColumns: string[] = ['date', 'company_desc', 'location', 'state_executed'];
-  dataSource = ELEMENT_DATA;
+  signAgreement() {
+    this.router.navigate(["/agreement"]);
+  }
+
+  listTransactions() {
+    this.router.navigate(["/transactions"]);
+  }
 
 }

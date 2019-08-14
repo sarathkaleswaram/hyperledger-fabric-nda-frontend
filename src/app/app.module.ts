@@ -10,14 +10,19 @@ import { LoginComponent } from './login/login.component';
 import { MatFormFieldModule, MatInputModule, MatCardModule, MatButtonModule, MatDialogModule, MatTableModule } from '@angular/material';
 import { AgreementComponent } from './agreement/agreement.component';
 import { HomeComponent } from './home/home.component';
-import { UserService } from './services/user.service';
+import { APIService } from './services/api.service';
+import { TransactionsComponent } from './transactions/transactions.component';
+import { SignaturePadModule } from 'angular2-signaturepad';
+import { SignatureFieldComponent } from './signature-field/signature-field.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     AgreementComponent,
-    HomeComponent
+    HomeComponent,
+    TransactionsComponent,
+    SignatureFieldComponent
   ],
   imports: [
     BrowserModule,
@@ -31,9 +36,10 @@ import { UserService } from './services/user.service';
     MatCardModule, 
     MatButtonModule,
     MatDialogModule,
-    MatTableModule
+    MatTableModule,
+    SignaturePadModule
   ],
-  providers: [UserService],
+  providers: [APIService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

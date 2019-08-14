@@ -1,0 +1,28 @@
+<div class="card">
+  <div class="input-container form-group">
+    <i class="fa fa-user icon"></i>
+    <input class="form-control" type="text" [(ngModel)]="ndaKey" placeholder="NDA Key">
+  </div>
+  <button type="Submit" class="btn btn-info btn-md" (click)="searchNDA()">Submit</button>
+</div>
+
+<table id="customers">
+  <thead>
+    <tr>
+      <th>Transaction Hash</th>
+      <th>Timestamp</th>
+      <th>Disclosing Party</th>
+      <th>Receiving Party</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let tx of txs">
+      <td>{{ tx.TxId }}</td>
+      <td>{{ tx.Timestamp | date: 'dd/MM/yyyy' }}</td>
+      <td>{{ tx.Value.disclosingparty }}</td>
+      <td>{{ tx.Value.receivingparty }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="loader" *ngIf="showSpinner"></div>

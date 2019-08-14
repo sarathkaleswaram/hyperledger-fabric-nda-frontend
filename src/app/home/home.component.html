@@ -1,28 +1,4 @@
-<div class="container">
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-
-                <!--- Note that these columns can be defined in any order.
-                      The actual rendered columns are set as a property on the row definition" -->
-              
-                <!-- Name Column -->
-                <ng-container matColumnDef="location">
-                  <th mat-header-cell *matHeaderCellDef> Location  </th>
-                  <td mat-cell *matCellDef="let user"> {{user.location}} </td>
-                </ng-container>
-              
-                <!-- Weight Column -->
-                <ng-container matColumnDef="company_receive">
-                  <th mat-header-cell *matHeaderCellDef> Company Received </th>
-                  <td mat-cell *matCellDef="let user"> {{user.company_receive}} </td>
-                </ng-container>
-              
-                <!-- Symbol Column -->
-                <ng-container matColumnDef="date">
-                  <th mat-header-cell *matHeaderCellDef>Date </th>
-                  <td mat-cell *matCellDef="let user"> {{user.transaction}} </td>
-                </ng-container>
-              
-                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-              </table>
+<div class="card">
+  <button type="button" class="btn btn-info btn-md" (click)="signAgreement()">Sign Agreement</button>
+  <button type="button" class="btn btn-info btn-md" (click)="listTransactions()">List Transactions</button>
 </div>

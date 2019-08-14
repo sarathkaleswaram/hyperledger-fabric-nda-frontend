@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { APIService } from '../services/api.service';
 
 @Component({
   selector: 'app-login',
@@ -9,29 +10,29 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
   
-name: string;
-pswd: string;
-loginForm: FormGroup;
-isSubmitted = false;
+  loginForm: FormGroup;
+  message = "";
 
-  constructor(private router: Router, private fb:FormBuilder) { }
+  constructor(private router: Router, private fb: FormBuilder, private apiService: APIService) { }
 
   ngOnInit() {
     this.loginForm = this.fb.group({
-      name: ['', Validators.required],
-      pswd: ['', Validators.required]
-    })
+      username: ['', Validators.required],
+      password: ['', Validators.required]
+    });
   }
 
-  login(): void{
-    console.log(this.loginForm.value);
-    if(this.loginForm.valid ){
-      this.router.navigate(["/agreement"]);
-    }else{
-      console.log('Invalid credentials');
-    }
-    // this.authService.login(this.loginForm.value);
-    // this.router.navigateByUrl('/admin');
+  login(): void{    
+    this.apiService.login(this.loginForm.value).subscribe((data: any) => {
+      if (data.status == "SUCCESS") {
+        localStorage.setItem("enrollmentID", data.enrollmentID);
+        this.router.navigate(["/home"]);
+      } else {
+        this.message = data.message;
+      }
+    }, error => {
+      this.message = "Unable to login.";
+    });
   }
 
 }

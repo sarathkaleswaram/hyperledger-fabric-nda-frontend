@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --host 0.0.0.0 --port 4300",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -19,6 +19,7 @@
     "@angular/platform-browser": "~8.0.1",
     "@angular/platform-browser-dynamic": "~8.0.1",
     "@angular/router": "~8.0.1",
+    "angular2-signaturepad": "^2.8.0",
     "bootstrap": "^4.3.1",
     "primeng-datatable": "^4.2.2",
     "rxjs": "~6.4.0",

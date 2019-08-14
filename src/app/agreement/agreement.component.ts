@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { UserService } from '../services/user.service';
+import { APIService } from '../services/api.service';
+import { SignatureFieldComponent } from '../signature-field/signature-field.component';
 
-declare let $: any;
+
 @Component({
   selector: 'app-agreement',
   templateUrl: './agreement.component.html',
@@ -13,42 +13,40 @@ declare let $: any;
 export class AgreementComponent implements OnInit {
 
   agreementForm: FormGroup;
+  @ViewChildren(SignatureFieldComponent) public sigs: QueryList<SignatureFieldComponent>;
 
-  constructor(private fb: FormBuilder, private router: Router, private us:UserService) { 
-    this.createForm();
+  constructor(private fb: FormBuilder, private router: Router, private apiService:APIService) {
   }
 
   ngOnInit() {
-  }
-
-  createForm() {
     this.agreementForm = this.fb.group({
+      disclosingParty:['', Validators.required],
+      disclosingPartyLocation:['', Validators.required],
+      receivingParty:['', Validators.required],
+      receivingPartyLocation:['', Validators.required],
       date: ['', Validators.required],
-      month: ['', Validators.required],
-      company_desc:['', Validators.required],
-      location:['', Validators.required],
-      location_receive:['', Validators.required],
-      company_receive:['', Validators.required],
-      transaction:['', Validators.required],
-      state_accord:['', Validators.required],
-      state_executed:['', Validators.required],
-    })
-  }
-
-  addUser(date, month, company_desc, location, location_receive, company_receive, transaction, state_accord, state_executed){
-
-    this.us.addUser(date, month, company_desc, location, location_receive, company_receive, transaction, state_accord, state_executed);
-
+      ndaKey:['', Validators.required],
+      agreementSign: [''],
+      enrollmentID: [''],
+      invokeFunc: ['submitNDA']
+    });
   }
 
   signature():void {
-    this.router.navigate(["home"]);
+    console.log(this.agreementForm.value)
+    this.agreementForm.controls['ndaKey'].setValue(this.agreementForm.controls['ndaKey'].value.toUpperCase());
+    this.agreementForm.controls['enrollmentID'].setValue(localStorage.getItem("enrollmentID"));
+    this.apiService.submitNDA(this.agreementForm.value).subscribe((data: any) => {
+      if (data.status == "SUCCESS") {
+        alert("SUCCESS");
+      } else {
+        alert(data.message);
+      }
+    });
   }
-  // saveModal(e): void {
-  //   console.log(e);
-  // }
-  // hideModal():void {
-  //   document.getElementById('close-modal').click();
-  // }
+
+  clearSign() {
+    this.agreementForm.controls['agreementSign'].setValue("");
+  }
 
 }

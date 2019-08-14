@@ -1,49 +1,31 @@
 <div class="card">
-    <h2>Login Form</h2>
-    <form [formGroup]= "loginForm">
-        <div class="input-container form-group">
-            <i class="fa fa-user icon"></i>
-            <input class="form-control" type="text" formControlName= "name" placeholder="Username" name="name" #name>
-        </div>
-        <div *ngIf="loginForm.controls['name'].invalid && (loginForm.controls['name'].dirty || loginForm.controls['name'].touched)" class="alert alert-danger">
-            <div *ngIf="loginForm.controls['name'].errors.required">
-              Name is required.
-            </div>
-          </div>
-        <div class="input-container">            
-            <i class="fa fa-key icon"></i>
-            <input class="form-control" type="password" formControlName="pswd" id="password" placeholder="Password" name="password" #pswd>
-        </div>
-        <div *ngIf="loginForm.controls['pswd'].invalid && (loginForm.controls['pswd'].dirty || loginForm.controls['pswd'].touched)" class="alert alert-danger">
-            <div *ngIf="loginForm.controls['pswd'].errors.required">
-              Password is required.
-            </div>
-          </div>
-        <button type="Submit" class="btn btn-info btn-md" (click) = "login()">Submit</button>
-    </form>
-
-            <!-- <form [formGroup]="loginForm" class="login-container" (ngSubmit)="login()">
-          
-              <p [ngClass]="{ 'has-error': isSubmitted && formControls.name.errors }">
-                <input type="name" placeholder="Name" formControlName="name">
-              </p>
-          
-              <div *ngIf="isSubmitted && formControls.name.errors" class="help-block">
-                <div *ngIf="formControls.name.errors.required">Login is required</div>
-              </div>
-          
-              <p [ngClass]="{ 'has-error': isSubmitted && formControls.pswd.errors }">
-                <input type="password" placeholder="Password" formControlName="pswd">
-              </p>
-          
-              <div *ngIf="isSubmitted && formControls.pswd.errors" class="help-block">
-                <div *ngIf="formControls.pswd.errors.required">Password is required</div>
-              </div>
-          
-              <p>
-                <input type="submit" value="Log in">
-              </p>
-            </form> -->
+  <h2>NDA Login</h2>
+  <form [formGroup]="loginForm">
+    <div class="input-container form-group">
+      <i class="fa fa-user icon"></i>
+      <input class="form-control" type="text" formControlName="username" placeholder="Username" username="username"
+        #username>
+    </div>
+    <div
+      *ngIf="loginForm.controls['username'].invalid && (loginForm.controls['username'].dirty || loginForm.controls['username'].touched)"
+      class="alert alert-danger">
+      <div *ngIf="loginForm.controls['username'].errors.required">
+        Name is required.
+      </div>
+    </div>
+    <div class="input-container">
+      <i class="fa fa-key icon"></i>
+      <input class="form-control" type="password" formControlName="password" id="password" placeholder="Password"
+        name="password" #password>
+    </div>
+    <div
+      *ngIf="loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)"
+      class="alert alert-danger">
+      <div *ngIf="loginForm.controls['password'].errors.required">
+        Password is required.
+      </div>
+    </div>
+    <button type="Submit" class="btn btn-info btn-md" (click)="login()">Submit</button>
+  </form>
+  <br>{{message}}
 </div>
-
-
