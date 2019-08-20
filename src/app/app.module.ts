@@ -14,6 +14,7 @@ import { APIService } from './services/api.service';
 import { TransactionsComponent } from './transactions/transactions.component';
 import { SignaturePadModule } from 'angular2-signaturepad';
 import { SignatureFieldComponent } from './signature-field/signature-field.component';
+import { AddNDAComponent } from './add-nda/add-nda.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { SignatureFieldComponent } from './signature-field/signature-field.compo
     AgreementComponent,
     HomeComponent,
     TransactionsComponent,
+    AddNDAComponent,
     SignatureFieldComponent
   ],
   imports: [

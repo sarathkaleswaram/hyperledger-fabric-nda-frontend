@@ -9,17 +9,16 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
+  buttons: [] = [];
+
   constructor(private apiService: APIService, private router: Router) { }
 
   ngOnInit() {
+    this.buttons = JSON.parse(localStorage.getItem("buttons"));
   }
 
-  signAgreement() {
-    this.router.navigate(["/agreement"]);
+  logout() {
+    localStorage.clear();
+    this.router.navigate(['/login']);
   }
-
-  listTransactions() {
-    this.router.navigate(["/transactions"]);
-  }
-
 }

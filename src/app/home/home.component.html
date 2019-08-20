@@ -1,4 +1,4 @@
 <div class="card">
-  <button type="button" class="btn btn-info btn-md" (click)="signAgreement()">Sign Agreement</button>
-  <button type="button" class="btn btn-info btn-md" (click)="listTransactions()">List Transactions</button>
+  <button *ngFor="let button of buttons" type="button" class="btn btn-info btn-md" [routerLink]="button.route">{{button.label}}</button>
+  <button type="button" class="btn btn-info btn-md" (click)="logout()">Log out</button>
 </div>

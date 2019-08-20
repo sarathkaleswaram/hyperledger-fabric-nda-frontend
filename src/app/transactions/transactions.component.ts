@@ -11,17 +11,13 @@ export class TransactionsComponent implements OnInit {
 
   txs = [];
   showSpinner: boolean = false;
-  ndaKey: string = "";
 
   constructor(private apiService: APIService, private router: Router) { }
 
   ngOnInit() {
-  }
-
-  searchNDA() {
     this.txs = [];
     this.showSpinner = true;
-    let body = { enrollmentID: localStorage.getItem("enrollmentID"), ndaKey: this.ndaKey.toUpperCase() };
+    let body = { enrollmentID: localStorage.getItem("enrollmentID"), partyKey: localStorage.getItem("partyKey") };
     this.apiService.getNDATxs(body).subscribe((data: any) => {
       this.showSpinner = false;
       if (data.status == "SUCCESS") {

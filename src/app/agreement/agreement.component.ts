@@ -12,33 +12,56 @@ import { SignatureFieldComponent } from '../signature-field/signature-field.comp
 })
 export class AgreementComponent implements OnInit {
 
-  agreementForm: FormGroup;
   @ViewChildren(SignatureFieldComponent) public sigs: QueryList<SignatureFieldComponent>;
+  agreementForm = {
+    disclosingParty: '',
+    disclosingPartyLocation: '',
+    receivingParty: '',
+    receivingPartyLocation: '',
+    date: '',
+    ndaRegarding: '',
+    agreementSign: '',
+    enrollmentID: '',
+    ndaKey: '',
+    invokeFunc: "submitNDA"
+  }
+  showSpinner: boolean = false;
+  nda: any = {};
+  isSignDone: boolean = false;
 
   constructor(private fb: FormBuilder, private router: Router, private apiService:APIService) {
   }
 
   ngOnInit() {
-    this.agreementForm = this.fb.group({
-      disclosingParty:['', Validators.required],
-      disclosingPartyLocation:['', Validators.required],
-      receivingParty:['', Validators.required],
-      receivingPartyLocation:['', Validators.required],
-      date: ['', Validators.required],
-      ndaKey:['', Validators.required],
-      agreementSign: [''],
-      enrollmentID: [''],
-      invokeFunc: ['submitNDA']
-    });
+    this.nda = JSON.parse(localStorage.getItem("nda"));
+    if (this.nda == null) {
+      alert("NDA not initialized to your accout.");
+      this.router.navigate(["/home"]);
+    } else {
+      this.agreementForm.disclosingParty = this.nda.disclosingparty;
+      this.agreementForm.disclosingPartyLocation = this.nda.disclosingpartylocation;
+      this.agreementForm.receivingParty = this.nda.receivingparty;
+      this.agreementForm.receivingPartyLocation = this.nda.receivingpartylocation;
+      this.agreementForm.date = this.nda.date;
+      this.agreementForm.ndaRegarding = this.nda.regarding;
+      this.agreementForm.agreementSign = this.nda.agreementsign;
+      this.agreementForm.ndaKey = this.nda.disclosingparty.toUpperCase();
+      this.agreementForm.enrollmentID = localStorage.getItem("enrollmentID");
+      if (this.nda.agreementsign.length > 1) {
+        this.isSignDone = true;
+      }
+    }
   }
 
-  signature():void {
-    console.log(this.agreementForm.value)
-    this.agreementForm.controls['ndaKey'].setValue(this.agreementForm.controls['ndaKey'].value.toUpperCase());
-    this.agreementForm.controls['enrollmentID'].setValue(localStorage.getItem("enrollmentID"));
-    this.apiService.submitNDA(this.agreementForm.value).subscribe((data: any) => {
+  submit():void {
+    this.showSpinner = true;
+    this.apiService.submitNDA(this.agreementForm).subscribe((data: any) => {
+      this.showSpinner = false;
       if (data.status == "SUCCESS") {
+        this.nda.agreementsign = this.agreementForm.agreementSign;
+        localStorage.setItem("nda", JSON.stringify(this.nda));
         alert("SUCCESS");
+        this.router.navigate(["/transactions"]);
       } else {
         alert(data.message);
       }
@@ -46,7 +69,7 @@ export class AgreementComponent implements OnInit {
   }
 
   clearSign() {
-    this.agreementForm.controls['agreementSign'].setValue("");
+    this.agreementForm.agreementSign = "";
   }
 
 }

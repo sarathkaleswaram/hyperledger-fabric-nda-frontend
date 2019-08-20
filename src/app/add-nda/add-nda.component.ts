@@ -5,34 +5,39 @@ import { APIService } from '../services/api.service';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  templateUrl: './add-nda.component.html',
+  styleUrls: ['./add-nda.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class AddNDAComponent implements OnInit {
   
-  loginForm: FormGroup;
+  ndaForm: FormGroup;
   showSpinner: boolean = false;
   message = "";
 
   constructor(private router: Router, private fb: FormBuilder, private apiService: APIService) { }
 
   ngOnInit() {
-    this.loginForm = this.fb.group({
+    this.ndaForm = this.fb.group({
+      name: ['', Validators.required],
+      ceo: ['', Validators.required],
+      location: ['', Validators.required],
       username: ['', Validators.required],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
+      date: ['', Validators.required],
+      regarding: ['', Validators.required],
+      enrollmentID: ['', Validators.required],
+      invokeFunc: ['initNDA']
     });
+    this.ndaForm.controls['enrollmentID'].setValue(localStorage.getItem("enrollmentID"));
   }
 
   login(): void{
     this.showSpinner = true;
-    this.apiService.login(this.loginForm.value).subscribe((data: any) => {
+    this.apiService.initNDA(this.ndaForm.value).subscribe((data: any) => {
       this.showSpinner = false;
       if (data.status == "SUCCESS") {
-        localStorage.setItem("enrollmentID", data.enrollmentID);
-        localStorage.setItem("partyKey", data.partyKey);
-        localStorage.setItem("nda", JSON.stringify(data.nda));
-        localStorage.setItem("buttons", JSON.stringify(data.buttons));
-        this.router.navigate(["/home"]);
+        alert("SUCCESS");
+        this.router.navigate(["/transactions"]);
       } else {
         this.message = data.message;
       }

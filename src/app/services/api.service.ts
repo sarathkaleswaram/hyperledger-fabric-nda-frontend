@@ -22,9 +22,12 @@ export class APIService {
   getNDATxs(body) {
     return this.http.post(`${this.url}/getNDATxs`, body, httpOptions);
   }
+  
+  initNDA(body) {
+    return this.http.post(`${this.url}/invoke`, body, httpOptions);
+  }
 
   submitNDA(body) {
     return this.http.post(`${this.url}/invoke`, body, httpOptions);
   }
-
 }

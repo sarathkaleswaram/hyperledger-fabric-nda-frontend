@@ -27,5 +27,6 @@
     </div>
     <button type="Submit" class="btn btn-info btn-md" (click)="login()">Submit</button>
   </form>
+  <div class="loader" *ngIf="showSpinner"></div>
   <br>{{message}}
 </div>

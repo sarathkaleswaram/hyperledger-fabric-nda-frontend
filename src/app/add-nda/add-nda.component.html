@@ -1,0 +1,36 @@
+<div class="card">
+  <h2>NDA</h2>
+  <form [formGroup]="ndaForm">
+    <div class="input-container form-group">
+      <i class="fa fa-address-card icon"></i>
+      <input class="form-control" type="text" formControlName="name" placeholder="Party Name" name="name">
+    </div>
+    <div class="input-container">
+      <i class="fa fa-user icon"></i>
+      <input class="form-control" type="text" formControlName="ceo" id="ceo" placeholder="CEO" name="ceo">
+    </div>
+    <div class="input-container form-group">
+      <i class="fa fa-location-arrow icon"></i>
+      <input class="form-control" type="text" formControlName="location" placeholder="Party Location" name="location">
+    </div>
+    <div class="input-container form-group">
+      <i class="fa fa-user icon"></i>
+      <input class="form-control" type="text" formControlName="username" placeholder="Username" name="username">
+    </div>
+    <div class="input-container form-group">
+      <i class="fa fa-key icon"></i>
+      <input class="form-control" type="password" formControlName="password" placeholder="Password" name="password">
+    </div>
+    <div class="input-container form-group">
+      <i class="fa fa-calendar icon"></i>
+      <input class="form-control" type="date" formControlName="date" placeholder="Date" name="date">
+    </div>
+    <div class="input-container form-group">
+      <i class="fa fa-book icon"></i>
+      <input class="form-control" type="text" formControlName="regarding" placeholder="Regarding" name="regarding">
+    </div>
+    <button type="Submit" class="btn btn-info btn-md" (click)="login()">Submit</button>
+  </form>
+  <div class="loader" *ngIf="showSpinner"></div>
+  <br>{{message}}
+</div>
