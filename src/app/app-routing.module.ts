@@ -5,14 +5,17 @@ import { AgreementComponent } from './agreement/agreement.component';
 import { HomeComponent } from './home/home.component';
 import { TransactionsComponent } from './transactions/transactions.component';
 import { AddNDAComponent } from './add-nda/add-nda.component';
+import { AuthGuard } from './services/auth-guard.service';
+import { AgreementPrintComponent } from './agreement-print/agreement-print.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent},
-  { path: 'home', component: HomeComponent },
-  { path: 'agreement', component: AgreementComponent},
   { path: 'login', component: LoginComponent},
-  { path: 'transactions', component: TransactionsComponent},
-  { path: 'add-nda', component: AddNDAComponent}
+  { path: 'home', canActivate: [AuthGuard], component: HomeComponent },
+  { path: 'agreement', canActivate: [AuthGuard], component: AgreementComponent},
+  { path: 'agreement-print', canActivate: [AuthGuard], component: AgreementPrintComponent},
+  { path: 'transactions', canActivate: [AuthGuard], component: TransactionsComponent},
+  { path: 'add-nda', canActivate: [AuthGuard], component: AddNDAComponent}
 ];
 
 @NgModule({

@@ -1,3 +1,18 @@
+<div id="loader-wrapper" *ngIf="showSpinner">
+  <div id="loader"></div>
+
+  <div class="loader-section section-left"></div>
+  <div class="loader-section section-right"></div>
+
+</div>
+
+<div class="header">
+  <a (click)="home()" class="logo">NDA</a>
+  <div class="header-right">
+    <a class="btn btn-info btn-md" (click)="logout()">Logout</a>
+  </div>
+</div>
+
 <table id="customers">
   <thead>
     <tr>
@@ -6,6 +21,7 @@
       <th>Status</th>
       <th>Disclosing Party</th>
       <th>Receiving Party</th>
+      <th>View</th>
     </tr>
   </thead>
   <tbody>
@@ -15,9 +31,9 @@
       <td>{{ tx.Value.status }}</td>
       <td>{{ tx.Value.disclosingparty }}</td>
       <td>{{ tx.Value.receivingparty }}</td>
+      <td><button class="btn btn-info btn-sm" (click)="viewNDA(tx.Value)" *ngIf="tx.Value.status == 'Agreed'">View</button></td>      
     </tr>
   </tbody>
 </table>
 
-<div class="loader" *ngIf="showSpinner"></div>
 <p *ngIf="!showSpinner && !txs.length > 0">No Transactions found.</p>

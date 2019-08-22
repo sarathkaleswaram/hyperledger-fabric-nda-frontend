@@ -28,4 +28,17 @@ export class TransactionsComponent implements OnInit {
     });
   }
 
+  viewNDA(nda) {
+    localStorage.setItem("nda", JSON.stringify(nda));
+    this.router.navigate(['/agreement-print']);
+  }
+  
+  home() {
+    this.router.navigate(['/home']);
+  }
+
+  logout() {
+    localStorage.clear();
+    this.router.navigate(['/login']);
+  }
 }

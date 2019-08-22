@@ -13,18 +13,20 @@ import { HomeComponent } from './home/home.component';
 import { APIService } from './services/api.service';
 import { TransactionsComponent } from './transactions/transactions.component';
 import { SignaturePadModule } from 'angular2-signaturepad';
-import { SignatureFieldComponent } from './signature-field/signature-field.component';
 import { AddNDAComponent } from './add-nda/add-nda.component';
+import { AuthGuard } from './services/auth-guard.service';
+import { AgreementPrintComponent } from './agreement-print/agreement-print.component';
+import { PDFExportModule } from '@progress/kendo-angular-pdf-export';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     AgreementComponent,
+    AgreementPrintComponent,
     HomeComponent,
     TransactionsComponent,
-    AddNDAComponent,
-    SignatureFieldComponent
+    AddNDAComponent
   ],
   imports: [
     BrowserModule,
@@ -39,9 +41,10 @@ import { AddNDAComponent } from './add-nda/add-nda.component';
     MatButtonModule,
     MatDialogModule,
     MatTableModule,
-    SignaturePadModule
+    SignaturePadModule,
+    PDFExportModule
   ],
-  providers: [APIService],
+  providers: [APIService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

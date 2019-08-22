@@ -1,0 +1,74 @@
+input {
+    border: 0;
+    border-bottom: 1px solid #000;
+    padding-left: 10px;
+    padding-right: 5px;
+}
+
+input:active {
+    outline: none !important;
+}
+
+input:focus {
+    outline-width: none !important;
+}
+
+h2 {
+    margin-top: 2em;
+    text-align: center;
+}
+
+.agreement {
+    margin-bottom: 5em;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.signature {
+    position: relative;
+    float: right;
+}
+
+.loader {
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite;
+    /* Safari */
+    animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+p {
+    font-size: 16px;
+}
+
+kendo-pdf-export {
+    font-family: "DejaVu Sans", "Arial", sans-serif;
+}

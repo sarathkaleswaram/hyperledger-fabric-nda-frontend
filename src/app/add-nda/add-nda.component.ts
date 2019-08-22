@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { APIService } from '../services/api.service';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-submit',
   templateUrl: './add-nda.component.html',
   styleUrls: ['./add-nda.component.scss']
 })
@@ -31,7 +31,11 @@ export class AddNDAComponent implements OnInit {
     this.ndaForm.controls['enrollmentID'].setValue(localStorage.getItem("enrollmentID"));
   }
 
-  login(): void{
+  getToday(): string {
+    return new Date().toISOString().split('T')[0]
+ }
+
+  submit(): void{
     this.showSpinner = true;
     this.apiService.initNDA(this.ndaForm.value).subscribe((data: any) => {
       this.showSpinner = false;
@@ -43,8 +47,17 @@ export class AddNDAComponent implements OnInit {
       }
     }, error => {
       this.showSpinner = false;
-      this.message = "Unable to login.";
+      this.message = "Unable to submit.";
     });
+  }
+
+  logout() {
+    localStorage.clear();
+    this.router.navigate(['/login']);
+  }
+  
+  home() {
+    this.router.navigate(['/home']);
   }
 
 }

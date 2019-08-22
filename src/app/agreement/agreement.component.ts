@@ -1,8 +1,8 @@
-import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { Component, OnInit, QueryList, ViewChildren, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { APIService } from '../services/api.service';
-import { SignatureFieldComponent } from '../signature-field/signature-field.component';
+import { SignaturePad } from 'angular2-signaturepad/signature-pad';
 
 
 @Component({
@@ -12,7 +12,12 @@ import { SignatureFieldComponent } from '../signature-field/signature-field.comp
 })
 export class AgreementComponent implements OnInit {
 
-  @ViewChildren(SignatureFieldComponent) public sigs: QueryList<SignatureFieldComponent>;
+  @ViewChild(SignaturePad, { static: true }) signaturePad: SignaturePad; 
+  public signaturePadOptions: Object = {
+    'minWidth': 1,
+    'canvasWidth': 350,
+    'canvasHeight': 200
+  };
   agreementForm = {
     disclosingParty: '',
     disclosingPartyLocation: '',
@@ -27,7 +32,6 @@ export class AgreementComponent implements OnInit {
   }
   showSpinner: boolean = false;
   nda: any = {};
-  isSignDone: boolean = false;
 
   constructor(private fb: FormBuilder, private router: Router, private apiService:APIService) {
   }
@@ -47,10 +51,16 @@ export class AgreementComponent implements OnInit {
       this.agreementForm.agreementSign = this.nda.agreementsign;
       this.agreementForm.ndaKey = this.nda.disclosingparty.toUpperCase();
       this.agreementForm.enrollmentID = localStorage.getItem("enrollmentID");
-      if (this.nda.agreementsign.length > 1) {
-        this.isSignDone = true;
-      }
     }
+  }
+
+  ngAfterViewInit() {
+    this.signaturePad.set('minWidth', 1);
+    this.signaturePad.clear();
+  }
+ 
+  drawComplete() {
+    this.agreementForm.agreementSign = this.signaturePad.toDataURL();
   }
 
   submit():void {
@@ -70,6 +80,7 @@ export class AgreementComponent implements OnInit {
 
   clearSign() {
     this.agreementForm.agreementSign = "";
+    this.signaturePad.clear();
   }
 
 }

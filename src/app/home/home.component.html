@@ -1,4 +1,11 @@
+<div class="header">
+  <a (click)="home()" class="logo">NDA</a>
+  <div class="header-right">
+    <a class="btn btn-info btn-md" (click)="logout()">Logout</a>
+  </div>
+</div>
+
 <div class="card">
-  <button *ngFor="let button of buttons" type="button" class="btn btn-info btn-md" [routerLink]="button.route">{{button.label}}</button>
-  <button type="button" class="btn btn-info btn-md" (click)="logout()">Log out</button>
+  <button *ngFor="let button of buttons" type="button" class="btn btn-info btn-md"
+    [routerLink]="button.route">{{button.label}}</button>
 </div>

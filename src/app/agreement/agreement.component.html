@@ -1,3 +1,11 @@
+<div id="loader-wrapper" *ngIf="showSpinner">
+  <div id="loader"></div>
+
+  <div class="loader-section section-left"></div>
+  <div class="loader-section section-right"></div>
+
+</div>
+  
 <div class="container agreement">
   <h2 text-center>NON-DISCLOSURE AGREEMENT</h2><br><br><br>
   <p> THIS AGREEMENT (the "Agreement”) is entered into on this
@@ -182,15 +190,12 @@
     (h) Paragraph headings used in this Agreement are for reference only and shall not be used or relied upon in the
     interpretation of this Agreement.<br><br><br>
 
-
-    <div class="sign">
-      <signature-field [(ngModel)]="agreementForm.agreementSign"></signature-field>
+    <div>
+      <signature-pad [options]="signaturePadOptions" (onEndEvent)="drawComplete()"></signature-pad>
       <p>----------------------------------------------------------------</p>
-      <p *ngIf="!isSignDone">Please sign here.</p>
+      <p>Please sign here.</p>
+      <button (click)="clearSign()" class="btn btn-primary btn-sm">Clear Sign</button><br>      
+      <button class="btn btn-info btn-md signature" data-toggle="modal" data-target="#signatureModal"
+        (click)="submit()" [disabled]="!agreementForm.agreementSign.length > 0">Proceed</button>      
     </div>
-    <button (click)="sigs.first.clear(); clearSign()" class="btn btn-primary btn-sm" *ngIf="!isSignDone">Clear Sign</button>
-    <br>
-    <button class="btn btn-info btn-md signature" data-toggle="modal" data-target="#signatureModal"
-      (click)="submit()" [disabled]="!agreementForm.agreementSign.length > 0" *ngIf="!isSignDone">Proceed</button>
 </div>
-<div class="loader" *ngIf="showSpinner"></div>
