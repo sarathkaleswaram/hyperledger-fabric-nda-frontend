@@ -1,6 +1,6 @@
 <div class="header">
   <a (click)="home()" class="logo">
-    <img class="img-logo" src="../../assets/logo-new.png" alt="Block Matrix">
+    <img class="img-logo" src="../../assets/logo.png" alt="Block Matrix">
   </a>
   <div class="header-right">
     <a class="btn btn-info btn-md" (click)="logout()">Logout</a>
@@ -8,6 +8,7 @@
 </div>
 
 <div class="card">
+  <div class="nda-text text-center">Non Disclosure Agreement</div>
   <button *ngFor="let button of buttons" type="button" class="btn btn-info btn-md"
     [routerLink]="button.route">{{button.label}}</button>
 </div>
