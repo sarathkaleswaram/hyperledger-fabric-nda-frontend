@@ -7,7 +7,9 @@
 </div>
 
 <div class="header">
-  <a (click)="home()" class="logo">NDA</a>
+  <a (click)="home()" class="logo">
+    <img class="img-logo" src="../../assets/logo-new.png" alt="Block Matrix">
+  </a>
   <div class="header-right">
     <a class="btn btn-info btn-md" (click)="logout()">Logout</a>
   </div>
@@ -31,7 +33,8 @@
       <td>{{ tx.Value.status }}</td>
       <td>{{ tx.Value.disclosingparty }}</td>
       <td>{{ tx.Value.receivingparty }}</td>
-      <td><button class="btn btn-info btn-sm" (click)="viewNDA(tx.Value)" *ngIf="tx.Value.status == 'Agreed'">View</button></td>      
+      <td><button class="btn btn-info btn-sm" (click)="viewNDA(tx.Value)"
+          *ngIf="tx.Value.status == 'Agreed'">View</button></td>
     </tr>
   </tbody>
 </table>

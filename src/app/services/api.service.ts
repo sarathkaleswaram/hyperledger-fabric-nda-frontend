@@ -11,7 +11,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class APIService {
-  url = "http://183.82.116.216:3000";
+  url = "http://13.235.2.241:3000";
   
   constructor(private http: HttpClient) { }
   

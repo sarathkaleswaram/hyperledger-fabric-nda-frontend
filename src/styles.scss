@@ -45,6 +45,13 @@
     float: right;
 }
 
+
+.img-logo {
+    height: 10%;
+    position: absolute;
+    margin-top: -30px;
+}
+
 /* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */
 @media screen and (max-width: 500px) {
     .header a {
@@ -55,6 +62,10 @@
 
     .header-right {
         float: none;
+    }
+
+    .btn {
+        margin-top: 10%;
     }
 }
 
@@ -73,15 +84,15 @@
     position: relative;
     left: 50%;
     top: 50%;
-    width: 150px;
-    height: 150px;
+    width: 100px;
+    height: 100px;
     margin: -75px 0 0 -75px;
     border-radius: 50%;
     border: 5px solid transparent;
     border-top-color: #3498db;
 
-    -webkit-animation: spin 2s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
-    animation: spin 2s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
+    -webkit-animation: spin 3s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
+    animation: spin 3s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
 }
 #loader:before {
     content: "";
@@ -91,10 +102,10 @@
     right: 5px;
     bottom: 5px;
     border-radius: 50%;
-    border: 5px solid transparent;
+    border-top: 5px solid #eff313;
 
-    -webkit-animation: spin 3s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
-    animation: spin 3s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
+    -webkit-animation: antispin 2s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
+    animation: spin 2s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
 }
 
 #loader:after {
@@ -105,10 +116,9 @@
     right: 15px;
     bottom: 15px;
     border-radius: 50%;
-    border: 5px solid transparent;
-
-    -webkit-animation: spin 1.5s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
-      animation: spin 1.5s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
+    border-top: 5px solid #f31313;
+    -webkit-animation: spin 3s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
+      animation: spin 3s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
 }
 
 #loader-wrapper .loader-section {
@@ -152,5 +162,30 @@
         -webkit-transform: rotate(360deg);  /* Chrome, Opera 15+, Safari 3.1+ */
         -ms-transform: rotate(360deg);  /* IE 9 */
         transform: rotate(360deg);  /* Firefox 16+, IE 10+, Opera */
+    }
+}
+
+@-webkit-keyframes antispin {
+    0%   { 
+        -webkit-transform: rotate(-180deg);  /* Chrome, Opera 15+, Safari 3.1+ */
+        -ms-transform: rotate(-180deg);  /* IE 9 */
+        transform: rotate(-180deg);  /* Firefox 16+, IE 10+, Opera */
+    }
+    100% {
+        -webkit-transform: rotate(180deg);  /* Chrome, Opera 15+, Safari 3.1+ */
+        -ms-transform: rotate(180deg);  /* IE 9 */
+        transform: rotate(180deg);  /* Firefox 16+, IE 10+, Opera */
+    }
+}
+@keyframes antispin {
+    0%   { 
+        -webkit-transform: rotate(-180deg);  /* Chrome, Opera 15+, Safari 3.1+ */
+        -ms-transform: rotate(-180deg);  /* IE 9 */
+        transform: rotate(-180deg);  /* Firefox 16+, IE 10+, Opera */
+    }
+    100% {
+        -webkit-transform: rotate(180deg);  /* Chrome, Opera 15+, Safari 3.1+ */
+        -ms-transform: rotate(180deg);  /* IE 9 */
+        transform: rotate(180deg);  /* Firefox 16+, IE 10+, Opera */
     }
 }

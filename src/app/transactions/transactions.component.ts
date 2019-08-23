@@ -25,6 +25,9 @@ export class TransactionsComponent implements OnInit {
       } else {
         alert(data.message);
       }
+    }, error => {
+      this.showSpinner = false;
+      alert(error.message);
     });
   }
 
