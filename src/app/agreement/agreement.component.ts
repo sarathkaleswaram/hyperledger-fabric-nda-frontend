@@ -18,18 +18,7 @@ export class AgreementComponent implements OnInit {
     'canvasWidth': 350,
     'canvasHeight': 200
   };
-  agreementForm = {
-    disclosingParty: '',
-    disclosingPartyLocation: '',
-    receivingParty: '',
-    receivingPartyLocation: '',
-    date: '',
-    ndaRegarding: '',
-    agreementSign: '',
-    enrollmentID: '',
-    ndaKey: '',
-    invokeFunc: "submitNDA"
-  }
+  agreementsign: string = "";
   showSpinner: boolean = false;
   nda: any = {};
 
@@ -41,16 +30,6 @@ export class AgreementComponent implements OnInit {
     if (this.nda == null) {
       alert("NDA not initialized to your accout.");
       this.router.navigate(["/home"]);
-    } else {
-      this.agreementForm.disclosingParty = this.nda.disclosingparty;
-      this.agreementForm.disclosingPartyLocation = this.nda.disclosingpartylocation;
-      this.agreementForm.receivingParty = this.nda.receivingparty;
-      this.agreementForm.receivingPartyLocation = this.nda.receivingpartylocation;
-      this.agreementForm.date = this.nda.date;
-      this.agreementForm.ndaRegarding = this.nda.regarding;
-      this.agreementForm.agreementSign = this.nda.agreementsign;
-      this.agreementForm.ndaKey = this.nda.disclosingparty.toUpperCase();
-      this.agreementForm.enrollmentID = localStorage.getItem("enrollmentID");
     }
   }
 
@@ -60,15 +39,16 @@ export class AgreementComponent implements OnInit {
   }
  
   drawComplete() {
-    this.agreementForm.agreementSign = this.signaturePad.toDataURL();
+    this.agreementsign = this.signaturePad.toDataURL();
   }
 
   submit():void {
     this.showSpinner = true;
-    this.apiService.submitNDA(this.agreementForm).subscribe((data: any) => {
+    this.nda.agreementsign = this.agreementsign;
+    this.nda.enrollmentID = localStorage.getItem("enrollmentID");
+    this.apiService.submitNDA(this.nda).subscribe((data: any) => {
       this.showSpinner = false;
       if (data.status == "SUCCESS") {
-        this.nda.agreementsign = this.agreementForm.agreementSign;
         localStorage.setItem("nda", JSON.stringify(this.nda));
         alert("SUCCESS");
         this.router.navigate(["/transactions"]);
@@ -79,8 +59,17 @@ export class AgreementComponent implements OnInit {
   }
 
   clearSign() {
-    this.agreementForm.agreementSign = "";
+    this.agreementsign = "";
     this.signaturePad.clear();
+  }
+
+  logout() {
+    localStorage.clear();
+    this.router.navigate(['/login']);
+  }
+
+  home() {
+    this.router.navigate(['/home']);
   }
 
 }

@@ -41,7 +41,7 @@ export class AddNDAComponent implements OnInit {
       this.showSpinner = false;
       if (data.status == "SUCCESS") {
         alert("SUCCESS");
-        this.router.navigate(["/transactions"]);
+        this.router.navigate(["/home"]);
       } else {
         this.message = data.message;
       }

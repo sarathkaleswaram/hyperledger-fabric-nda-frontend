@@ -11,7 +11,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class APIService {
-  url = "http://13.235.2.241:3000";
+  url = "http://localhost:3000";
   
   constructor(private http: HttpClient) { }
   
@@ -24,10 +24,10 @@ export class APIService {
   }
   
   initNDA(body) {
-    return this.http.post(`${this.url}/invoke`, body, httpOptions);
+    return this.http.post(`${this.url}/initNDA`, body, httpOptions);
   }
 
   submitNDA(body) {
-    return this.http.post(`${this.url}/invoke`, body, httpOptions);
+    return this.http.post(`${this.url}/submitNDA`, body, httpOptions);
   }
 }

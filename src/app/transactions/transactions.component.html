@@ -20,7 +20,6 @@
     <tr>
       <th>Transaction Hash</th>
       <th>Timestamp</th>
-      <th>Status</th>
       <th>Disclosing Party</th>
       <th>Receiving Party</th>
       <th>View</th>
@@ -30,11 +29,9 @@
     <tr *ngFor="let tx of txs">
       <td>{{ tx.TxId }}</td>
       <td>{{ tx.Timestamp | date: 'dd/MM/yyyy HH:mm:ss' }}</td>
-      <td>{{ tx.Value.status }}</td>
       <td>{{ tx.Value.disclosingparty }}</td>
       <td>{{ tx.Value.receivingparty }}</td>
-      <td><button class="btn btn-info btn-sm" (click)="viewNDA(tx.Value)"
-          *ngIf="tx.Value.status == 'Agreed'">View</button></td>
+      <td><button class="btn btn-info btn-sm" (click)="viewNDA(tx.Value)">View</button></td>
     </tr>
   </tbody>
 </table>

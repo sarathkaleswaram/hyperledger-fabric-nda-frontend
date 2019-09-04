@@ -17,7 +17,7 @@ export class TransactionsComponent implements OnInit {
   ngOnInit() {
     this.txs = [];
     this.showSpinner = true;
-    let body = { enrollmentID: localStorage.getItem("enrollmentID"), partyKey: localStorage.getItem("partyKey") };
+    let body = { enrollmentID: localStorage.getItem("enrollmentID") };
     this.apiService.getNDATxs(body).subscribe((data: any) => {
       this.showSpinner = false;
       if (data.status == "SUCCESS") {

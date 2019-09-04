@@ -13,7 +13,7 @@ export class AuthGuard implements CanActivate {
     }
     if (state.url == "/agreement") {
       let nda = JSON.parse(localStorage.getItem("nda"));
-      if (nda.agreementsign.length > 1) {
+      if (nda.agreementsign) {
         this.router.navigate(['/agreement-print']);
         return false;
       }

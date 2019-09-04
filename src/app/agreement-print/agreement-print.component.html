@@ -19,15 +19,15 @@
   <kendo-pdf-export #pdf paperSize="A4" margin="2cm">
 
     <h2 text-center>NON-DISCLOSURE AGREEMENT</h2><br><br><br>
-    <p> THIS AGREEMENT (the "Agreement”) is entered into on this <b><u>{{agreementForm.date}}</u></b>
-      date, and between <b><u>{{agreementForm.disclosingParty}}</u></b>, located at
-      <b><u>{{agreementForm.disclosingPartyLocation}}</u></b> ( the”
-      Disclosing Party”), and <b><u>{{agreementForm.receivingParty}}</u></b> with an address at
-      <b><u>{{agreementForm.receivingPartyLocation}}</u></b> (the “Receiving
+    <p> THIS AGREEMENT (the "Agreement”) is entered into on this <b><u>{{nda.date}}</u></b>
+      date, and between <b><u>{{nda.disclosingparty}}</u></b>, located at
+      <b><u>{{nda.disclosingpartylocation}}</u></b> ( the”
+      Disclosing Party”), and <b><u>{{nda.receivingparty}}</u></b> with an address at
+      <b><u>{{nda.receivingpartylocation}}</u></b> (the “Receiving
       Party”).<br><br>
 
       The Receiving Party hereto desires to participate in discussions regarding
-      <b><u>{{agreementForm.ndaRegarding}}</u></b> (the “Transaction”). During these discussions, Disclosing Party may
+      <b><u>{{nda.regarding}}</u></b> (the “Transaction”). During these discussions, Disclosing Party may
       share certain proprietary information with the Receiving Party. Therefore, in consideration of the mutual promises
       and covenants contained in this Agreement, and other good and valuable consideration, the receipt and sufficiency
       of which is hereby acknowledged, the parties hereto agree as follows:<br>
@@ -197,7 +197,7 @@
       (h) Paragraph headings used in this Agreement are for reference only and shall not be used or relied upon in the
       interpretation of this Agreement.<br><br><br>
 
-      <img [src]="agreementForm.agreementSign" /><br>
+      <img [src]="nda.agreementsign" /><br>
   </kendo-pdf-export>
 
   <button class="btn btn-info btn-md signature" data-toggle="modal" data-target="#signatureModal"

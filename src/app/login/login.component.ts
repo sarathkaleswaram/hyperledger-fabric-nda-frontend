@@ -29,7 +29,6 @@ export class LoginComponent implements OnInit {
       this.showSpinner = false;
       if (data.status == "SUCCESS") {
         localStorage.setItem("enrollmentID", data.enrollmentID);
-        localStorage.setItem("partyKey", data.partyKey);
         localStorage.setItem("nda", JSON.stringify(data.nda));
         localStorage.setItem("buttons", JSON.stringify(data.buttons));
         this.router.navigate(["/home"]);

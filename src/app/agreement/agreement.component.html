@@ -5,23 +5,27 @@
   <div class="loader-section section-right"></div>
 
 </div>
-  
+
+<div class="header">
+  <a (click)="home()" class="logo">
+    <img class="img-logo" src="../../assets/logo.png" alt="Block Matrix">
+  </a>
+  <div class="header-right">
+    <a class="btn btn-info btn-md" (click)="logout()">Logout</a>
+  </div>
+</div>
+
 <div class="container agreement">
   <h2 text-center>NON-DISCLOSURE AGREEMENT</h2><br><br><br>
-  <p> THIS AGREEMENT (the "Agreement”) is entered into on this
-    <input type="date" name="date" [(ngModel)]="agreementForm.date" disabled> date, and between
-    <input type="text" name="disclosingParty" [(ngModel)]="agreementForm.disclosingParty" disabled>, located at
-    <input type="text" name="disclosingPartyLocation" [(ngModel)]="agreementForm.disclosingPartyLocation" disabled> ( the”
-    Disclosing Party”), and
-    <input type="text" name="receivingParty" [(ngModel)]="agreementForm.receivingParty" disabled> with an address at
-    <input type="text" name="receivingPartyLocation" [(ngModel)]="agreementForm.receivingPartyLocation" disabled>(the “Receiving
+  <p> THIS AGREEMENT (the "Agreement”) is entered into on this <b><u>{{nda.date}}</u></b>
+    date, and between <b><u>{{nda.disclosingparty}}</u></b>, located at
+    <b><u>{{nda.disclosingpartylocation}}</u></b> ( the”
+    Disclosing Party”), and <b><u>{{nda.receivingparty}}</u></b> with an address at
+    <b><u>{{nda.receivingpartylocation}}</u></b> (the “Receiving
     Party”).<br><br>
 
     The Receiving Party hereto desires to participate in discussions regarding
-
-    <input type="text" name="ndaRegarding" [(ngModel)]="agreementForm.ndaRegarding" disabled>
-
-    (the “Transaction”). During these discussions, Disclosing Party may
+    <b><u>{{nda.regarding}}</u></b> (the “Transaction”). During these discussions, Disclosing Party may
     share certain proprietary information with the Receiving Party. Therefore, in consideration of the mutual promises
     and covenants contained in this Agreement, and other good and valuable consideration, the receipt and sufficiency
     of which is hereby acknowledged, the parties hereto agree as follows:<br>
@@ -194,8 +198,8 @@
       <signature-pad [options]="signaturePadOptions" (onEndEvent)="drawComplete()"></signature-pad>
       <p>----------------------------------------------------------------</p>
       <p>Please sign here.</p>
-      <button (click)="clearSign()" class="btn btn-primary btn-sm">Clear Sign</button><br>      
-      <button class="btn btn-info btn-md signature" data-toggle="modal" data-target="#signatureModal"
-        (click)="submit()" [disabled]="!agreementForm.agreementSign.length > 0">Proceed</button>      
+      <button (click)="clearSign()" class="btn btn-primary btn-sm">Clear Sign</button><br>
+      <button class="btn btn-info btn-md signature" data-toggle="modal" data-target="#signatureModal" (click)="submit()"
+        [disabled]="!agreementsign.length > 0">Proceed</button>
     </div>
 </div>
